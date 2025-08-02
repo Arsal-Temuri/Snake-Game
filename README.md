@@ -1,7 +1,6 @@
 # Neon Retro Snake Game 🐍
 
 [![Play Game](https://img.shields.io/badge/Play%20Game-Live%20Demo-brightgreen?style=for-the-badge)](https://Arsal-Temuri.github.io/Snake-Game/)
-
 A retro-styled Snake Game with neon aesthetics, built using HTML5, CSS3, and JavaScript. Control your snake through a glowing grid, collect food to grow longer, and try to achieve the highest score without hitting the walls or yourself!
 
 ## ✨ Features
