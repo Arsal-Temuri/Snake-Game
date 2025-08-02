@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Audio</title>
+</head>
+
+<body>
+    <button onclick="generate()">Generate Audio Files</button>
+    <script src="js/generate-audio.js"></script>
+    <script>
+        async function generate() {
+            const generator = new AudioGenerator();
+            await generator.generateAll();
+        }
+    </script>
+</body>
+</html>

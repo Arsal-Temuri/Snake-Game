@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game - Play</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body class="game-page">
+    <!-- Audio Controls -->
+    <div class="mute-button-container">
+        <button class="mute-button unmuted" onclick="window.audioManager.toggleMute()">🔊</button>
+    </div>
+
+    <div id="gameContent" class="blur">
+        <!-- Game UI -->
+        <div class="game-wrapper">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div class="side-panel">
+                <div class="retro-box score-box">
+                    <h2>SCORE: <span id="score">0</span></h2>
+                    <h2>LEVEL: <span id="level">1</span></h2>
+                    <h2>SPEED: <span id="speed">1</span></h2>
+                </div>
+                <button class="neon-button" onclick="location.href='index.html'">MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name Input Overlay -->
+    <div id="nameOverlay" class="name-overlay">
+        <div class="overlay-background"></div>
+        <div class="retro-box name-input-container">
+            <h2 class="input-title">ENTER YOUR NAME</h2>
+            <input type="text" id="playerName" class="neon-input" maxlength="10" placeholder="PLAYER" autofocus>
+            <button class="neon-button glow-button" onclick="startGameWithName()">START GAME</button>
+        </div>
+    </div>
+    <div id="gameOverPopup" class="popup hidden">
+        <div class="retro-box">
+            <h2 id="gameOverText">GAME OVER!</h2>
+            <button class="neon-button" onclick="resetGame()">PLAY AGAIN</button>
+            <button class="neon-button" onclick="location.href='index.html'">MENU</button>
+        </div>
+    </div>
+    <div id="levelPopup" class="popup hidden">
+        <div class="retro-box">
+            <h2 id="levelText">LEVEL 2!</h2>
+            <button class="neon-button" onclick="continueGame()">CONTINUE</button>
+        </div>
+    </div>
+    <script src="js/audio-manager.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/food.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/game-init.js"></script>
+    <script src="js/reset.js"></script>
+    <script>
+        // Initialize audio paths
+        if (window.audioManager) {
+            window.audioManager.setMusicPaths(
+                'assets/audio/start.mp3',
+                'assets/audio/eat.mp3',
+                'assets/audio/gameover.mp3'
+            );
+        }
+    </script>
+</body>
+
+</html>

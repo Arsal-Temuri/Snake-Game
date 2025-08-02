@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Snake Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="leaderboard-page">
+    <!-- Audio Controls -->
+    <div class="mute-button-container">
+        <button class="mute-button unmuted" onclick="window.audioManager.toggleMute()">🔊</button>
+    </div>
+
+    <div class="content-container">
+        <div class="retro-box">
+            <h1 class="page-title">TOP 10 SCORES</h1>
+            <div id="leaderboardList" class="leaderboard-list">
+                <!-- Dynamic leaderboard items will be inserted here -->
+            </div>
+            <div class="button-container">
+                <button class="neon-button" onclick="location.href='index.html'">BACK TO MENU</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/menu.js"></script>
+    <script>
+        function showLeaderboard() {
+            // Try to read scores from localStorage
+            const leaderboard = JSON.parse(localStorage.getItem('snakeLeaderboard')) || [];
+            const leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+
+            if (leaderboard.length > 0) {
+                // Sort scores by highest first
+                leaderboard.sort((a, b) => b.score - a.score);
+
+                leaderboard.slice(0, 10).forEach((entry, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'leaderboard-item';
+                    item.innerHTML = `
+                        <span class="leaderboard-rank">#${index + 1}</span>
+                        <span class="leaderboard-name">${entry.name}</span>
+                        <span class="leaderboard-score">${entry.score}</span>
+                    `;
+                    leaderboardList.appendChild(item);
+                });
+
+                // Add placeholder items if less than 10 entries
+                for (let i = leaderboard.length; i < 10; i++) {
+                    const item = document.createElement('div');
+                    item.className = 'leaderboard-item';
+                    item.innerHTML = `
+                    <span class="leaderboard-rank">#${i + 1}</span>
+                    <span class="leaderboard-name">---</span>
+                    <span class="leaderboard-score">0</span>
+                `;
+                    leaderboardList.appendChild(item);
+                }
+            }
+
+            // Load leaderboard when page loads
+            window.onload = showLeaderboard;
+        }
+        // Call the function to display the leaderboard on page load
+        showLeaderboard();
+    </script>
+    <script src="js/audio-manager.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        // Initialize audio on page load
+        window.addEventListener('load', () => {
+            if (window.audioManager) {
+                window.audioManager.setMusicPaths(
+                    'assets/audio/start.mp3',
+                    'assets/audio/eat.mp3',
+                    'assets/audio/gameover.mp3'
+                );
+            }
+        });
+    </script>
+</body>
+
+</html>

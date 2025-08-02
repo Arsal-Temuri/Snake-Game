@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions - Snake Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="instructions-page">
+    <!-- Audio Controls -->
+    <div class="mute-button-container">
+        <button class="mute-button unmuted" onclick="window.audioManager.toggleMute()">🔊</button>
+    </div>
+
+    <div class="content-container">
+        <div class="retro-box">
+            <h1 class="page-title">HOW TO PLAY</h1>
+            <div class="instructions-text">
+                <div class="instruction-item">
+                    <p>🎮 Use ARROW KEYS to move your snake</p>
+                </div>
+                <div class="instruction-item">
+                    <p>🍎 Collect food to grow longer and score points</p>
+                </div>
+                <div class="instruction-item">
+                    <p>🏃 Speed increases with levels:</p>
+                    <p class="level-text">⚡ Level 1: Normal Speed (0-49 points)</p>
+                    <p class="level-text">⚡ Level 2: 2x Speed (50-99 points)</p>
+                    <p class="level-text">⚡ Level 3: 3x Speed (100-149 points)</p>
+                </div>
+                <div class="instruction-item">
+                    <p>🏆 Win the game by reaching 150 points!</p>
+                </div>
+                <div class="instruction-item">
+                    <p>❌ Game Over if you hit walls or yourself</p>
+                </div>
+                <div class="instruction-item">
+                    <p>⏸️ Press P to pause/resume the game</p>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="neon-button" onclick="location.href='index.html'">BACK TO MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio-manager.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        // Initialize audio on page load
+        if (window.audioManager) {
+            window.audioManager.setMusicPaths(
+                'assets/audio/start.mp3',
+                'assets/audio/eat.mp3',
+                'assets/audio/gameover.mp3'
+            );
+        }
+    </script>
+</body>
+
+</html>

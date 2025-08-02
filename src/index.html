@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Snake Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="menu-page">
+    <!-- Snake background animation container -->
+    <div class="wiggly-snake-container" id="snakeContainer"></div>
+
+    <!-- Audio Controls -->
+    <div class="mute-button-container">
+        <button class="mute-button unmuted" onclick="window.audioManager.toggleMute()">🔊</button>
+    </div>
+
+    <div class="menu-container">
+        <img src="assets/snake-pic.png" alt="Snake Game" class="snake-pic">
+        <div class="retro-box">
+            <h1 class="game-title">SNAKE GAME</h1>
+            <div class="menu-buttons">
+                <button onclick="location.href='game.html'" class="neon-button">START</button>
+                <button onclick="location.href='instructions.html'" class="neon-button">INSTRUCTIONS</button>
+                <button onclick="location.href='leaderboard.html'" class="neon-button">LEADERBOARD</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio-manager.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        // Start background music when page loads
+        window.addEventListener('load', () => {
+            if (window.audioManager) {
+                window.audioManager.setMusicPaths(
+                    'assets/audio/start.mp3',
+                    'assets/audio/eat.mp3',
+                    'assets/audio/gameover.mp3'
+                );
+                window.audioManager.playBackgroundMusic();
+            }
+        });
+    </script>
+</body>
+
+</html>
